@@ -1,41 +1,38 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modelo 3D en AR</title>
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-  <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background-color: #f0f0f0;
-    }
-    model-viewer {
-      width: 100vw;
-      height: 100vh;
-      background-color: #f0f0f0;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualización 3D y AR de Mueble</title>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/1.12.0/model-viewer.min.js"></script>
+
+    <style>
+        /* Estilos básicos para que el modelo ocupe toda la pantalla */
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        model-viewer {
+            width: 100%;
+            height: 100%;
+            background-color: #f0f0f0; /* Color de fondo si no hay modelo */
+        }
+    </style>
 </head>
 <body>
 
-  <model-viewer
-    src="tabu2.glb"
-    alt="Mi modelo 3D en AR"
-    ar
-    ar-modes="scene-viewer quick-look webxr"
-    ar-scale="auto"
-    camera-controls
-    auto-rotate
-    environment-image="neutral"
-    shadow-intensity="1"
-    exposure="1"
-    style="width: 100vw; height: 100vh;">
-  </model-viewer>
+    <model-viewer
+        src="MESA.glb"
+        ios-src="MESA.glb"
+        ar
+        ar-modes="webxr scene-viewer quick-look"
+        camera-controls
+        auto-rotate
+        shadow-intensity="1">
+    </model-viewer>
 
 </body>
 </html>
