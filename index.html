@@ -1,75 +1,71 @@
 <!DOCTYPE html>
-
 <html lang="es">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Visualización 3D y AR de Mueble</title>
-
+    <title>Visualización 3D por Plataforma</title>
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/1.12.0/model-viewer.min.js"></script>
 
-
-
     <style>
-
-        /* Estilos básicos para que el modelo ocupe toda la pantalla */
-
-        body {
-
-            margin: 0;
-
-            padding: 0;
-
-            width: 100vw;
-
-            height: 100vh;
-
-        }
-
-
-
-        model-viewer {
-
-            width: 100%;
-
-            height: 100%;
-
-            background-color: #f0f0f0; /* Color de fondo si no hay modelo */
-
-        }
-
+        body { margin: 0; padding: 0; width: 100vw; height: 100vh; }
+        model-viewer { width: 100%; height: 100%; background-color: #f0f0f0; }
+        /* Oculta los bloques por defecto hasta que JavaScript decida cuál mostrar */
+        .model-container { display: none; width: 100%; height: 100vh; }
     </style>
-
 </head>
-
 <body>
 
+    <div id="iphone-viewer" class="model-container">
+        <model-viewer
+            src="MESA_iOS.glb" 
+            ios-src="MESAYTABU.usdz"
+            ar
+            ar-modes="quick-look"
+            camera-controls
+            shadow-intensity="1">
+        </model-viewer>
+    </div>
 
+    <div id="android-viewer" class="model-container">
+        <model-viewer
+            src="MESA_ANDROID.glb" 
+            ios-src="MESAYTABU.usdz" 
+            ar
+            ar-modes="webxr scene-viewer"
+            camera-controls
+            shadow-intensity="1">
+        </model-viewer>
+    </div>
 
-    <model-viewer
+    <script>
+        // Detecta el sistema operativo y muestra el modelo adecuado
+        function detectAndShowModel() {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            const iphoneViewer = document.getElementById('iphone-viewer');
+            const androidViewer = document.getElementById('android-viewer');
 
-        src="MESA.glb"
+            // 1. Detectar iOS (iPhone/iPad)
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                // Mostrar solo el modelo de iPhone
+                iphoneViewer.style.display = 'block';
+                androidViewer.style.display = 'none';
+            } 
+            // 2. Detectar Android (Samsung)
+            else if (/android/i.test(userAgent)) {
+                // Mostrar solo el modelo de Android/Samsung
+                iphoneViewer.style.display = 'none';
+                androidViewer.style.display = 'block';
+            }
+            // 3. Fallback para escritorio u otros OS
+            else {
+                // Mostrar el modelo de Android/Samsung por defecto
+                iphoneViewer.style.display = 'none';
+                androidViewer.style.display = 'block';
+            }
+        }
 
-        ios-src="MESA.glb"
-
-        ar
-
-        ar-modes="webxr scene-viewer quick-look"
-
-        camera-controls
-
-        auto-rotate
-
-        shadow-intensity="1">
-
-    </model-viewer>
-
-
+        detectAndShowModel();
+    </script>
 
 </body>
-
 </html>
