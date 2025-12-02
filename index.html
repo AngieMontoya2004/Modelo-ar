@@ -1,28 +1,75 @@
 <!DOCTYPE html>
+
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Visualización 3D y AR de Mueble</title>
+
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/1.12.0/model-viewer.min.js"></script>
 
+
+
     <style>
-        /* Estilos omitidos por brevedad */
-        body { margin: 0; padding: 0; width: 100vw; height: 100vh; }
-        model-viewer { width: 100%; height: 100%; background-color: #f0f0f0; }
+
+        /* Estilos básicos para que el modelo ocupe toda la pantalla */
+
+        body {
+
+            margin: 0;
+
+            padding: 0;
+
+            width: 100vw;
+
+            height: 100vh;
+
+        }
+
+
+
+        model-viewer {
+
+            width: 100%;
+
+            height: 100%;
+
+            background-color: #f0f0f0; /* Color de fondo si no hay modelo */
+
+        }
+
     </style>
+
 </head>
+
 <body>
 
+
+
     <model-viewer
+
         src="MESA.glb"
-        ios-src="MESAYTABU.usdz"
+
+        ios-src="MESA.glb"
+
         ar
+
         ar-modes="webxr scene-viewer quick-look"
+
         camera-controls
+
         auto-rotate
+
         shadow-intensity="1">
-        </model-viewer>
+
+    </model-viewer>
+
+
 
 </body>
+
 </html>
