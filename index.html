@@ -15,14 +15,14 @@
 <body>
 
     <model-viewer
-        src="MESAYTABU.usdz"
-        ios-src="MESAYTABU.usdz"
+        **src="MESA.glb"** <-- Archivo principal para web/Android
+        **ios-src="MESAYTABU.usdz"** <-- Archivo optimizado para iOS (Quick Look)
         ar
         ar-modes="webxr scene-viewer quick-look"
         camera-controls
         auto-rotate
         shadow-intensity="1"
-        **disable-tap**>
+        disable-tap>  <-- Bloquea la manipulación de tamaño en AR
     </model-viewer>
 
 </body>
