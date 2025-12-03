@@ -1,30 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualización 3D y AR</title>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/1.12.0/model-viewer.min.js"></script>
+
+    <style>
+        /* Estilos para ocupar toda la pantalla */
+        body { margin: 0; padding: 0; width: 100vw; height: 100vh; }
+        
+        /* Contenedor del modelo */
+        .model-container { 
+            display: none; /* Oculto por defecto */
+            width: 100%; 
+            height: 100vh; 
+        }
+
+        /* Asegura que el visor 3D ocupe su contenedor */
+        model-viewer { 
+            width: 100%; 
+            height: 100%; 
+            background-color: #f0f0f0; 
+        }
+    </style>
+</head>
 <body>
 
     <div id="model-viewer-container" class="model-container">
         <model-viewer
-            src="MESA_iOS.glb"
-            ios-src="MESAYTABU.usdz"
+            src="MESA.glb"  ios-src="MESAYTABU.usdz"
             ar
-            ar-modes="webxr quick-look scene-viewer" 
+            ar-modes="webxr quick-look scene-viewer"
             camera-controls
             shadow-intensity="1">
         </model-viewer>
     </div>
 
     <script>
-        // La detección original es buena, pero si solo te importa iOS,
-        // podemos usar la misma instancia para todo, ya que 'model-viewer'
-        // maneja automáticamente qué archivo usar (ios-src vs src).
-
+        // Función para mostrar el visor una vez que la página ha cargado
         function showModel() {
             const container = document.getElementById('model-viewer-container');
-            // Simplemente mostramos el contenedor. La etiqueta model-viewer
-            // se encargará de seleccionar 'ios-src' o 'src' dependiendo del SO.
+            // Muestra el contenedor e inicia la carga del modelo 3D
             container.style.display = 'block'; 
         }
 
-        // Ejecutamos la función para que el modelo se muestre
+        // Ejecuta la función para mostrar el visor
         showModel(); 
     </script>
 
 </body>
+</html>
